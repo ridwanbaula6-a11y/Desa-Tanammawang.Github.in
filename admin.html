@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Galeri - Desa Tanammawang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="admin-body">
+  <header class="site-header admin-header">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <div class="logo-badge">DT</div>
+        <div>
+          <h1>Admin Galeri Desa</h1>
+          <p>Tanammawang</p>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Kembali ke Website</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <section id="loginSection" class="admin-card reveal">
+        <h3>Login Admin</h3>
+        <p>Masuk untuk mengelola data galeri kegiatan desa.</p>
+        <form id="loginForm" class="form-grid">
+          <label>
+            Username
+            <input type="text" id="username" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="password" required />
+          </label>
+          <label class="password-toggle">
+            <input type="checkbox" id="toggleLoginPassword" />
+            Lihat Password
+          </label>
+          <button type="submit" class="btn-primary">Masuk</button>
+        </form>
+        <p id="loginMessage" class="message"></p>
+      </section>
+
+      <section id="adminPanel" class="admin-card hidden reveal">
+        <div class="panel-head">
+          <h3>Panel Admin Desa</h3>
+          <button id="logoutBtn" class="btn-secondary">Logout</button>
+        </div>
+
+        <h4 class="admin-subtitle">Kelola Background Hero</h4>
+        <form id="heroSettingsForm" class="form-grid two-col">
+          <label class="full upload-field">
+            Upload Gambar Background Hero
+            <input type="file" id="heroBackgroundFileInput" accept="image/*" />
+            <small class="hint">Upload gambar untuk background hero.</small>
+          </label>
+
+          <div class="full media-preview-wrap">
+            <img id="heroBackgroundPreview" alt="Preview Background Hero" class="media-preview hidden" />
+          </div>
+
+          <div class="full button-row">
+            <button type="button" id="clearHeroBtn" class="btn-secondary">Hapus Background Hero</button>
+          </div>
+
+          <button type="submit" class="btn-primary">Simpan Background Hero</button>
+          <div class="full">
+            <p id="heroSettingsMessage" class="message"></p>
+          </div>
+        </form>
+
+        <hr class="admin-divider" />
+
+        <h4 class="admin-subtitle">Kelola Logo Header</h4>
+        <form id="logoSettingsForm" class="form-grid two-col">
+          <label class="full upload-field">
+            Upload Logo Header (Bulat)
+            <input type="file" id="logoFileInput" accept="image/*" />
+            <small class="hint">File upload akan disimpan di localStorage.</small>
+          </label>
+
+          <div class="full media-preview-wrap">
+            <img id="logoPreview" alt="Preview Logo Header" class="media-preview hidden" />
+          </div>
+
+          <div class="full button-row">
+            <button type="button" id="clearLogoBtn" class="btn-secondary">Hapus Logo Header</button>
+          </div>
+
+          <button type="submit" class="btn-primary">Simpan Logo Header</button>
+          <div class="full">
+            <p id="logoSettingsMessage" class="message"></p>
+          </div>
+        </form>
+
+        <hr class="admin-divider" />
+
+        <h4 class="admin-subtitle">Kelola Profil Kepala Desa</h4>
+        <form id="leaderProfileForm" class="form-grid two-col">
+          <label>
+            Nama Kepala Desa
+            <input type="text" id="leaderNameInput" required />
+          </label>
+          <label>
+            Jabatan
+            <input type="text" id="leaderPositionInput" required />
+          </label>
+          <label class="full upload-field">
+            Upload Foto Profil Kepala Desa
+            <input type="file" id="leaderPhotoFileInput" accept="image/*" />
+            <small class="hint">Pilih file foto (JPG/PNG/WebP). Jika diisi, file upload akan diprioritaskan.</small>
+          </label>
+          <div class="full media-preview-wrap">
+            <img id="leaderPhotoPreview" alt="Preview Foto Kepala Desa" class="media-preview hidden" />
+          </div>
+
+          <div class="full button-row">
+            <button type="button" id="clearLeaderPhotoBtn" class="btn-secondary">Hapus Foto Kepala Desa</button>
+          </div>
+
+          <label class="full">
+            Teks Sambutan
+            <textarea id="leaderWelcomeInput" rows="4" required></textarea>
+          </label>
+
+          <button type="submit" class="btn-primary">Simpan Profil Kepala Desa</button>
+
+          <div class="full stats-help-box">
+            <strong>Panduan isi Statistik:</strong>
+            <p>Isi berurutan per kartu: <em>Nilai → Label → Sub Label</em>. Contoh: <em>4.892 → Jumlah Penduduk → Jiwa</em>.</p>
+          </div>
+
+          <div class="full stats-admin-grid">
+            <div class="stat-admin-card">
+              <h5>Statistik A</h5>
+              <label>
+                Nilai
+                <input type="text" id="stat1Value" placeholder="Contoh: 4.892" />
+              </label>
+              <label>
+                Label
+                <input type="text" id="stat1Label" placeholder="Contoh: Jumlah Penduduk" />
+              </label>
+              <label>
+                Sub Label
+                <input type="text" id="stat1SubLabel" placeholder="Contoh: Jiwa" />
+              </label>
+            </div>
+
+            <div class="stat-admin-card">
+              <h5>Statistik B</h5>
+              <label>
+                Nilai
+                <input type="text" id="stat2Value" placeholder="Contoh: 1.420" />
+              </label>
+              <label>
+                Label
+                <input type="text" id="stat2Label" placeholder="Contoh: Jumlah KK" />
+              </label>
+              <label>
+                Sub Label
+                <input type="text" id="stat2SubLabel" placeholder="Contoh: Kepala Keluarga" />
+              </label>
+            </div>
+
+            <div class="stat-admin-card">
+              <h5>Statistik C</h5>
+              <label>
+                Nilai
+                <input type="text" id="stat3Value" placeholder="Contoh: 19.8" />
+              </label>
+              <label>
+                Label
+                <input type="text" id="stat3Label" placeholder="Contoh: Luas Wilayah" />
+              </label>
+              <label>
+                Sub Label
+                <input type="text" id="stat3SubLabel" placeholder="Contoh: Km²" />
+              </label>
+            </div>
+
+            <div class="stat-admin-card">
+              <h5>Statistik D</h5>
+              <label>
+                Nilai
+                <input type="text" id="stat4Value" placeholder="Contoh: 12" />
+              </label>
+              <label>
+                Label
+                <input type="text" id="stat4Label" placeholder="Contoh: Destinasi Wisata" />
+              </label>
+              <label>
+                Sub Label
+                <input type="text" id="stat4SubLabel" placeholder="Contoh: Lokasi" />
+              </label>
+            </div>
+          </div>
+
+          <button type="button" id="saveStatsBtn" class="btn-secondary">Simpan Statistik</button>
+        </form>
+
+        <hr class="admin-divider" />
+        <h4 class="admin-subtitle">Ubah Username & Password Admin</h4>
+        <form id="credentialForm" class="form-grid two-col credential-form">
+          <label>
+            Username Baru
+            <input type="text" id="newUsername" required />
+          </label>
+          <label>
+            Password Baru
+            <input type="password" id="newPassword" required />
+          </label>
+          <label>
+            Konfirmasi Password Baru
+            <input type="password" id="confirmPassword" required />
+          </label>
+          <label class="password-toggle">
+            <input type="checkbox" id="toggleNewPassword" />
+            Lihat Password Baru
+          </label>
+          <button type="submit" class="btn-primary">Simpan Username & Password</button>
+        </form>
+        <p id="credentialMessage" class="message"></p>
+
+        <hr class="admin-divider" />
+        <h4 class="admin-subtitle">Kelola Media Sosial Desa</h4>
+        <form id="socialLinksForm" class="form-grid two-col">
+          <label>
+            URL YouTube
+            <input type="url" id="youtubeLinkInput" placeholder="https://youtube.com/..." />
+          </label>
+          <label>
+            URL Instagram
+            <input type="url" id="instagramLinkInput" placeholder="https://instagram.com/..." />
+          </label>
+          <label class="full">
+            URL Facebook
+            <input type="url" id="facebookLinkInput" placeholder="https://facebook.com/..." />
+          </label>
+          <button type="submit" class="btn-primary">Simpan Media Sosial</button>
+        </form>
+        <p id="socialLinksMessage" class="message"></p>
+
+        <hr class="admin-divider" />
+        <h4 class="admin-subtitle">Kelola Galeri Kegiatan</h4>
+
+        <form id="galleryForm" class="form-grid two-col">
+          <input type="hidden" id="galleryId" />
+          <label>
+            Judul Kegiatan
+            <input type="text" id="title" required />
+          </label>
+          <label>
+            URL Gambar / Video
+            <input type="text" id="imageUrl" />
+          </label>
+          <label class="upload-field">
+            Upload Foto / Video Kegiatan
+            <input type="file" id="galleryFileInput" accept="image/*,video/*" />
+            <small class="hint">Mendukung image/video. File upload diprioritaskan daripada URL.</small>
+          </label>
+          <div class="full media-preview-wrap">
+            <img id="galleryImagePreview" alt="Preview Gambar Kegiatan" class="media-preview hidden" />
+            <video id="galleryVideoPreview" class="media-preview hidden" controls></video>
+          </div>
+          <label class="full">
+            Deskripsi Singkat
+            <textarea id="description" rows="3" required></textarea>
+          </label>
+          <button type="submit" class="btn-primary">Simpan</button>
+          <button type="button" id="cancelEditBtn" class="btn-secondary hidden">Batal Edit</button>
+        </form>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th>Judul</th>
+                <th>Deskripsi</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="galleryTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
